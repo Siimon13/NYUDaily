@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+{% for college in data }
+<div>
+{{college['name']}}  <br>
+<select>
+ {% for class in college %}
+  <option id={{x['id']}}>{{x['name']}}</option>
+</select>
+ { % endfor %}
+ </div>
+ { % endfor %}
+ <input type="time" name="classtime">
+ <button type="submit">Submit Class</button>
+<br>
+
+<div id="currentClasses" >
+	
+</div>
+
+</body>
+
+</html>
