@@ -1,8 +1,8 @@
 from flask import Flask, render_template, redirect, session, request
-from pymongo import MongoClient
 import auth
 
 app = Flask(__name__)
+app.secret_key = 'aasdfastw'
 
 @app.route("/", methods=["GET","POST"])
 def index():
@@ -17,9 +17,23 @@ def login():
 		password = request.form['password'].encode('ascii','ignore')	
 		if auth.login(username,password):
 			session['username'] = username
+                        return redirect('/profile');
 		else:
 			return redirect('/login', message = auth.login(username,password))
-		
+
+@app.route("/profile",methods=["GET","POST"])
+def profile():
+        if 'username' in session:
+                return render_template('profile.html',user = session['username']);
+        elif request.method  == "GET":
+                return render_template('profile.html')
+        else:
+                school = request.form['school'].encode('ascii','ignore')
+                select = request.form['select'].encode('ascii','ignore')
+                time = request.form['time'].encode('ascii','ignore')
+                auth.add(session['username'],school,select,time)
+                
+                
 @app.route("/register",methods=["GET","POST"])
 def register():
 	if request.method == "GET":

@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="/static/assets/bus-icon.png">
+
+</head>
+
+<body>
+
+ <!--  {% for college in data %} -->
+  <div>
+   <!--  {{college['name']}}  <br> -->
+    <select>
+   <!--   {% for class in college %} -->
+   <!--      <option id="{{class['id']}}">{{class['name']}} </option>-->
+    </select>
+    <!--    {% endfor %} -->
+  </div>
+  <!--  {% endfor %} -->
+  <!--  <input type="time" name="classtime"> -->
+  <!--  <button type="submit">Submit Class</button> -->
+  <br>
+  
+
+
+  <div>
+    <h3>    Welcome {{user}}, Pick your classes </h3>
+    <div id="school">
+	 POLY NYU
+      <br>
+    </div>
+    <select id="selectC">
+      <option id="class['CS1001']">Computer Science </option>
+      <option id="class['CS1002']">Computer Science2 </option>
+      <option id="class['CS1003']">Computer Science3 </option>
+      <option id="class['CS1004']">Computer Science4 </option>
+    </select>
+  </div>
+  Class Time:<input type="time" id="classtime">
+  <button type="submit" id="test" onclick="AddClass()">Submit Class</button> 
+  <br>
+  
+  <div id="currentClasses" style="position:relative; left:1005px; top:5px;"></div>  
+
+  <div id="map">
+    <center>
+      <div id="currentTime" style="top:20px; left:500px; position: fixed;"></div>
+    </center>
+    Next Bus: <span id="busTime"> ... </span>
+  </div>
+  
+  <div class="js">
+  <script>
+   
+   var ClassArray = [];
+
+   
+   function Class(school,classcode,time){
+     this.school = school;
+     this.classcode = classcode;
+     this.time = time;
+   }
+   
+   //Used to sort the Class time
+   function compare(a,b){
+       if(a.time > b.time){
+	 return 1;
+       }
+       else{
+	 return -1;
+       }
+     }
+
+   //Adds the currentClass List
+   function AddClass(){
+     var classinfo ="";
+     var school = document.getElementById('school').innerHTML;
+     var e = document.getElementById('selectC');
+     var classcode = e.options[e.selectedIndex].text;
+     var t = document.getElementById('classtime');
+     var time = t.value;
+     ClassArray.push(new Class(school,classcode,time));
+     ClassArray.sort(compare);
+     for (var i = 0; i < ClassArray.length;i++){
+       classinfo += "<br>"+
+    	    "School: " + ClassArray[i].school + "<br>" +
+    	    "ClassCode: " + ClassArray[i].classcode + "<br>" +
+    	    "Time: " + ClassArray[i].time + "<br>"
+    }
+     document.getElementById('currentClasses').innerHTML = classinfo;
+     Planner();
+   }
+
+   //MAPScript
+   var now;
+   var daily;
+   var time = function (){
+     now = new Date();
+     daily = [
+       now.getHours(),
+       ':',
+       now.getMinutes(),
+       ':',
+       now.getSeconds()
+     ].join('');
+     document.getElementById('currentTime').innerHTML ="<h2>" + daily + "</h2>";
+   }
+   setInterval(time,1000);
+   
+   var PolySchedule = [
+     ["Monday-Thursday"],
+     ["7:45","8:45","9:45","10:45",
+      "11:45","12:45","13:45","14:45",
+      "15:45","16:45","17:45","18:45",
+      "19:45"]
+   ];
+   var Answer = [];
+
+   function Planner(){
+     Answer = [];
+     for(var i = 0;i < ClassArray.length;i++){
+	 if(ClassArray[i].time > daily){
+	   Answer.push(ClassArray[i].time);
+       }
+     }
+     Answer.sort(compare);
+   }
+   
+   setInterval(Planner,50000);
+   
+   function Schedule(){
+     var ans;
+     if(daily > "00:00" && daily < "07:00" || Answer.length == 0){
+       document.getElementById('busTime').innerHTML = "You're done for the day!";
+       return;
+     }else{
+       for(var i =0;i < Answer.length;i++){
+	 for(var j =0;j < PolySchedule[1].length; j++){
+	   if(Answer[i] > PolySchedule[1][j]){
+	     ans = j + 1;
+	   }
+	 }
+       }
+     }
+     if (PolySchedule[1][ans] == undefined){
+       document.getElementById('busTime').innerHTML = "You're done for the day!";
+     }else{
+       document.getElementById('busTime').innerHTML = PolySchedule[1][ans];
+       }
+   }
+      
+   setInterval(Schedule,5000);
+  </script>
+  </div>
+
+  
+</body>
+
+</html>

@@ -1,7 +1,7 @@
-from pymongo import MongoClient
+# from pymongo import MongoClient
 
-client = MongoClient()
-db = client.pcparts
+# client = MongoClient()
+# db = client.users
 	
 # def register(username, password):
 # 	conn = Dconn('users.db')
@@ -24,27 +24,30 @@ db = client.pcparts
 # 		return True
 
 def register(username,password):
-        if(db.users.find({"username":username}).count()) != 0:
-                return "There is a account with that username"
-        elif(chkpw != password):
-                return "Passwords aren't the same"
-        else:
-                db.users.insert({'username':username, 'password' : password})
-                return True
+        # if(db.users.find({"username":username}).count()) != 0:
+        #         return "There is a account with that username"
+        # elif(chkpw != password):
+        #         return "Passwords aren't the same"
+        # else:
+        #         db.users.insert({'username':username, 'password' : password})
+        #         return True
+        return True
 
 def login(user,password):
-        check=db.users.find_one({'username':user,'password':password}, fields={'_id':False})
-        if (db.users.find({"username":user}).count()) == 0:
-                return "No account with that username"
-        elif check == None:
-                return "Username or password is invalid"
-        else:
-                return True
+        # check=db.users.find_one({'username':user,'password':password}, fields={'_id':False})
+        # if (db.users.find({"username":user}).count()) == 0:
+        #         return "No account with that username"
+        # elif check == None:
+        #         return "Username or password is invalid"
+        # else:
+        return True
 
 def add(username,school,classes,time):
-        user = db.users.update({'username':username},{$addToSet: {tags: {$each ["schools","class","time"]}}
-                             }
-        
+        # user = db.users.update({'username':username},{$push: {"school" : school,
+        #                                                      "classes" : classes,
+        #                                                      "time" : time},{upsert: true}}) 
+       return True
+       
         
         
 	
