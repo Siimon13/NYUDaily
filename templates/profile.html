@@ -32,6 +32,7 @@
     <!--    {% endfor %} -->
   </div>
   <!--  {% endfor %} -->
+  
   <!--  <input type="time" name="classtime"> -->
   <!--  <button type="submit">Submit Class</button> -->
   <nav class="navbar navbar-default" role="navigation">
@@ -53,7 +54,7 @@
     <h3>    Welcome {{user}}, Pick your classes </h3>
     <div id="school">
       <txt style="font-size:20px"> Campus:</txt>
-      <select id="selectSchool" class="btn">
+      <select id="selectSchool" class="btn" onclick="display()">
 	<option value="" disabled selected>Please select your campus</option>
 	<option>POLY NYU</option>
 	<option>NYU College of Arts and Science</option>
@@ -69,7 +70,7 @@
     </div>
     <div>
       <txt style="font-size: 20px" >Classes:</txt>
-      <select id="selectC" onclick="display()" class="btn">
+      <select id="selectC" class="btn">
 
       </select>
     </div>
@@ -764,7 +765,7 @@
        document.getElementById('selectC').innerHTML = str; 
      }
      else if(school == "Leonard N. Stern School of Business"){
-       for(var i = 0; i < SternClasses.length;i++){
+       for(var i = 0; i < SternClass.length;i++){
 	 str += "<option>" + SternClasse[i] + "</option>"
        }
        document.getElementById('selectC').innerHTML = str;
@@ -786,6 +787,7 @@
      document.getElementById('selectC').innerHTML = str; 
    }
 
+   
    function getAddress(){
      var s = document.getElementById('selectSchool');
      var school = s.options[s.selectedIndex].text;
