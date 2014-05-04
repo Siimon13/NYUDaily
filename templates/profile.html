@@ -55,32 +55,21 @@
       <select id="selectSchool" class="btn">
 	<option value="" disabled selected>Please select your campus</option>
 	<option>POLY NYU</option>
-	<option>NYU CSA</option>
-	<option>NYUSTERN</option>
+	<option>NYU College of Arts and Science</option>
 	<option>College of Dentistry</option>
-	<option>College of Nursing</option>
-	<option>Ctr for Urban Science Program</option>
 	<option> Gallatin School of Individualized Study </option>
-	<option>Graduate School of Arts and Science </option>
 	<option>Leonard N. Stern School of Business </option>
-	<option> Liberal Studies </option>
-	<option>  Robert F. Wagner Graduate School of Public Service </option>
 	<option> School of Continuing and Professional Studies </option>
-	<option> School of Law </option>
-	<option> School of Medicine </option>
 	<option> Tisch School of the Arts </option>
-	<option>Steinhardt School of Culture, Education, and Human Development - Undergraduate </option>
+	<option>Steinhardt School of Culture, Education, and Human Development</option>
       </select>
       <br>
       <br>
     </div>
     <div>
       <txt style="font-size: 20px" >Classes:</txt>
-      <select id="selectC" class="btn">
-	<option id="class['CS1001']">Computer Science </option>
-	<option id="class['CS1002']">Computer Science2 </option>
-	<option id="class['CS1003']">Computer Science3 </option>
-	<option id="class['CS1004']">Computer Science4 </option>
+      <select id="selectC" onclick="display()" class="btn">
+
       </select>
     </div>
   </div>
@@ -94,10 +83,11 @@
 
 
   <div id="map">
+    <h3>Directions</h3>
     <center>
       <div id="currentTime" style="top:30px; left:575px; position: fixed;"></div>
     </center>
-    Next Bus: <span id="busTime"> Calculating... </span>
+    <span id="busTime"> Calculating... </span>
   </div>
   
   <div class="js">
@@ -152,7 +142,640 @@
      document.getElementById('currentClasses').innerHTML = classinfo;
      Planner();
    }
+ 
+   //Array of classes
 
+   SteinClasses = [
+     
+" Administration, Leadership & Technology (AMLT-GE)",
+" Applied Statistics in Social Research  (APSTA-GE)",
+" Art Education (ARTED-GE)",
+" Art Therapy (ARTT-GE)",
+" Bilingual Education (BILED-GE)",
+" Communicative Sciences & Disorders  (CSCD-GE)",
+" Costume Studies (ARCS-GE)",
+" Dance Education (MPADE-UE)",
+" Doctoral Advisement (DCADV-GE)",
+" Early Childhood (ECED-GE)",
+" Educational Administration Educational Leadership (EDLED-GE)",
+" Educational Policy (EDPLY-GE)",
+" English Education (ENGED-GE)",
+" Food Studies (FOOD-GE)",
+" Higher & Post-Secondary Education (HPSE-GE)",
+" Humanities & Social Sciences in the Professions (HMSS-GE)",
+" Interactive Music Courses (MPAIA-GE)",
+" International Education (INTE-GE)",
+" Literacy Education (LITC-GE)",
+" Mathematics Education (MTHED-GE)",
+" Media, Culture & Communication (MCC-UE)",
+" Music Education (MPAME-GE)",
+" Music Instrumental: Jazz (MPAJZ-GE)",
+" Music Instrumental: Piano (MPAPE-GE)",
+" Music Instrumental: Voice (MPAVP-GE)",
+" Music Performance/Theory & Composition (MPATC-GE)",
+" Music Therapy (MPAMT-GE)",
+" Occupational Therapy (OT-GE)",
+" Philosophy of Education (PHED-GE)",
+" Physical Therapy (PT-GE)",
+" Programs in Applied Psychology (APSY-GE)",
+" Reading Recovery (RDREC-GE)",
+" Science & Mathematics Education (SCMTH-UE)",
+" Social Studies Education (SOCED-GE)",
+" Special Education (SPCED-GE)",
+" Studio Art (ART-GE)",
+" Teaching & Learning (TCHL-GE)",
+" Visual Arts Administration (ARVA-GE)",
+" Applied Psychology (APSY-GE)",
+" Art & Art Professions (ARTP-GE)",
+" Art Theory & Critical Studies (ARTCR-GE)",
+" Arts & Humanities Education (AHUM-GE)",
+" Childhood Education (CHDED-GE)",
+" Consortium Courses (CONS)",
+" Dance Education (MPADE-GE)",
+" Departmental Courses (MPAGC-GE)",
+" Drama Therapy (MPADT-GE)",
+" Education & Jewish Studies (EJST-GE)",
+" Educational Communications & Technology  (EDCT-GE)",
+" Educational Theatre (MPAET-GE)",
+" Environmental Conservative Education  (ENYC-GE)",
+" Foreign Language Education (FLGED-GE)",
+" History of Education (HSED-GE)",
+" Inter-University Doctoral Consortium (IUCD-GE)",
+" Interdepartmental Research Studies (RESCH-GE)",
+" Language Education (LANED-GE)",
+" Maintenance (MAINT-GE)",
+" Media, Culture & Communication (MCC-GE)",
+" Music Business (MPAMB-GE)",
+" Music Instrumental: Brass (MPABR-GE)",
+" Music Instrumental: Percussion  (MPAPS-GE)",
+" Music Instrumental: Strings (MPASS-GE)",
+" Music Instrumental: Woodwinds (MPAWW-GE)",
+" Music Technology (MPATE-GE)",
+" Nutrition & Dietetics (NUTR-GE)",
+" Performing Arts Administration (MPAPA-GE)",
+" Philosophy of Education (PHED-UE)",
+" Physical Therapy (PT-UE)",
+" Public Health (PUHE-GE)",
+" Science & Mathematics Education  (SCMTH-GE)",
+" Science Education (SCIED-GE)",
+" Sociology of Education (SOED-GE)",
+" Student Affairs Honors & Seminars  (SAHS-GE)",
+" Studio Art (ART-UE)",
+" Teaching English as a Second Language (TESOL-GE)",
+" Advanced College Essay (ACE-UE)",
+" Applied Psychology (APSY-UE)",
+" Art & Art Professions (ARTP-UE)",
+" Art Therapy (ARTT-UE)",
+" Communicative Sciences & Disorders (CSCD-UE)",
+" Departmental Courses (MPAGC-UE)",
+" Educational Communication and  Technology (EDCT-UE)",
+" English Education (ENGED-UE)",
+" For Tisch Musical Theatre (MPATA-UE)",
+" Higher & Post-Secondary Educ (HPSE-UE)",
+" History of Education (HSED-UE)",
+" International Education (INTE-UE)",
+" Literacy Education (LITC-UE)",
+" Mathematics Education (MTHED-UE)",
+" Music Business (MPAMB-UE)",
+" Music Instrumental: Brass (MPABR-UE)",
+" Music Instrumental: Percussion (MPAPS-UE)",
+" Music Instrumental: Strings (MPASS-UE)",
+" Music Instrumental: Woodwinds (MPAWW-UE)",
+" Music Technology (MPATE-UE)",
+" Non-Credit Summer Program (SUMPA-UE)",
+" Occupational Therapy (OT-UE)",
+" Physical Therapy (PT-UE)",
+" Public Health (PUHE-UE)",
+" Social Studies Education (SOCED-UE)",
+" Special Education (SPCED-UE)",
+" Studio Art (ART-UE)",
+" American Sign Language (ASL-UE)",
+" Applied Statistics in Social Research  (APSTA-UE)",
+" Art Theory & Critical Studies (ARTCR-UE)",
+" Childhood Education (CHDED-UE)",
+" Dance Education (MPADE-UE)",
+" Early Childhood (ECED-UE)",
+" Educational Theatre (MPAET-UE)",
+" Food Studies (FOOD-UE)",
+" Foreign Language Education (FLGED-UE)",
+" Higher Education Opportunities  Program (HEOP-UE)",
+" Interactive Music Courses (MPAIA-UE)",
+" Liberal Arts Core (LIBAR-UE)",
+" Maintenance (MAINT-UE)",
+" Media, Culture & Communication (MCC-UE)",
+" Music Education (MPAME-UE)",
+" Music Instrumental: Jazz (MPAJZ-UE)",
+" Music Instrumental: Piano (MPAPE-UE)",
+" Music Instrumental: Voice (MPAVP-UE)",
+" Music Performance/Theory & Composition (MPATC-UE)",
+" Music Therapy (MPAMT-UE)",
+" Nutrition & Dietetics (NUTR-UE)",
+" Philosophy of Education (PHED-UE)",
+" Programs in Applied Psychology (APSY-UE)",
+" Science Education (SCIED-UE)",
+" Sociology of Education (SOED-UE)",
+" Student Affairs Honors & Seminars  (SAHS-UE)",
+" Teaching & Learning (TCHL-UE)",
+
+   ]
+   PolyClasses = [
+     "Advanced Honors Seminars(AHSEM-UA)",
+     "Aerospace Engineering(AE-UY)",
+     "Animal Studies (ANST-UA)",
+     "Anthropology (ANTH-UA)",
+"Art History (AH-UY)",
+"Art Theory & Critical Studies (ARTCR-GE)",
+"BioEngineering (BE-GY)",
+"Bioinformatics (BI-GY)",
+"Biomolecular Science (BMS-GY)",
+"Biotechnology & Entrepreneurship (BTE-GY)",
+"Chem & Biological Engineering (CBE)",
+"Chemical & Biological Engineerng (CBE-UY)",
+"Chemical Engineering (CH-UY)",
+"Chemistry (CHEM-UA)",
+"Chemistry (CM-UY)",
+"Cinema Studies (CINE-GT)",
+"Civil & Urban Engineering (CE-GY)",
+"Co-op Education Program (CP-GY)",
+"Computer Science (CS-GY)",
+"Computer Science (CSCI-GA)",
+"Core Course (COR1-GB)",
+"Ctr for Urban Sci and Progress (CUSP-GX)",
+"Dance Education (MPADE-UE)",
+"Distance Learning (DL-GY)",
+"East Asian Studies (EAST-UA)",
+"Educational Communications & Technology (EDCT-GE)",
+"Elect. Engineering - EL GRAD (EL)",
+"Electrophysics (EP-GY)",
+"English (EN-UY)",
+"Environmental Science (ES-GY)",
+"Environmental Studies (ENVST-UA)",
+"Expository Writing (EXPOS-UA)",
+"Finance (FINC-UB)",
+"Financial Engineering (FE-GY)",
+"Foreign Language (FL-UY)",
+"Game Design (GAMES-GT)",
+"General Studies (GS-UY)",
+"Hebrew & Judaic Studies (HBRJD-UA)",
+"Hellenic Studies (HEL-UA)",
+"History (HI-UY)",
+"History of Science (ST-GY)",
+"Humanities & Social Sciences (HUSS-UY)",
+"Humanities (HU-UY)",
+"Industrial Engineering (IE-UY)",
+"Information Systems (INFO-UB)",
+"Integrated Digital Media (DM-UY)",
+"Interarea (INTA-GB)",
+"Interdisciplinary Studies (IS-UY)",
+"Journalism (JW-GY)",
+"Law (LW-GY)",
+"Liberal Arts (LA-UY)",
+"Life Sciences (LS-UY)",
+"Management (MG-UY)",
+ "Manufacturing Engineering (MN-GY)",
+ "Marketing (MKTG-GB)",
+ "Materials Science (MT-GY)",
+" Math (MATH-UA)",
+" Mathematics (MA-UY)",
+" Mechanical & Aerospace Engr (AM-GY)",
+" Mechanical Engineering (ME-GY)",
+" Media Studies (MD-UY)",
+" Media, Culture & Communication (MCC-UE)",
+" Modern Language (ML-GY)",
+" Morse Academic Plan (MAP) (MAP-UA)",
+" Music Instrumental: Jazz (MPAJZ-UE)",
+" Music Performance/Theory & Composition  (MPATC-UE)",
+" Music Technology (MPATE-UE)",
+" Open Arts Curriculum (OART-UT)",
+" Operations Research (OR-GY)",
+" Organizational Behavior (OB-GY)",
+" Philosophy (PL-GY)",
+" Photography and Imaging (PHTI-GT)",
+" Physical Education (PE-GY)",
+" Physics (PH-GY)",
+" Physics (PHYS-UA)",
+" Portuguese (PORT-UA)",
+" Psychology (PS-UY)",
+" Public Health (PUHE-UE)",
+" Risk Engineering (RSK-UY)",
+" SA (SA-GY)",
+" Science and Technology (STS-UY)",
+" Social Science (SS-GY)",
+" Society, Environment, & Globalization ",
+" (SEG-UY)",
+" Spanish (SPAN-UA)",
+" Student Life (SL-GY)",
+" Studio Art (ART-UE)",
+" Systems Engineering (SE-UY)",
+" Technical Elective (TE-GY)",
+" Transportation (TR-GY)",
+" UG Public and Nonprofit Management and Policy (UPADM-GP)",
+" Urban Studies (URB-UY)",
+" Aerospace Engineering (AE-GY)",
+" American Language Institute (CESL1-CE)",
+" Anthropology (AN-UY)",
+" Applied Psychology (APSY-UE)",
+" Art History (ARTH-UA)",
+" Arts Workshops (ARTS-UG)",
+" BioEngineering (BE-UY)",
+" Biology (BIOL-UA)",
+" Biomolecular Science (BMS-UY)",
+" Biotechnology (BT-GY)",
+" Chemical & Biological Engineerng (CBE-GY)",
+" Chemical Engineering (CH-GY)",
+" Chemistry (CHEM-GA)",
+" Chemistry (CM-GY)",
+" Child/Adoles Mental Hlth Stds (CAMS-UA)",
+" Cinema Studies (CINE-UT)",
+" Civil & Urban Engineering (CE-UY)",
+" Co-op Education Program (CP-UY)",
+" Computer Science (CS-UY)",
+" Computer Science (CSCI-UA)",
+" Creative Writing (CRWRI-UA)",
+" Culture, Arts, and Media (CAM-UY)",
+" Data Science (DS-GA)",
+" Dramatic Literature (DRLIT-UA)",
+" Economics (EC-UY)",
+" Elect. Engineering - EE UGRD (EE-UY)",
+" Elect. Engineering - EL GRAD (EL-GY)",
+" English (EN-GY)",
+" English (ENGL-UA)",
+" Environmental Science (ES-UY)",
+" Exam Hour (EX-UY)",
+" Finance (FIN-UY)",
+" Finance and Risk Engineering (FRE-GY)",
+" Food Studies (FOOD-UE)",
+" French (FREN-UA)",
+" General Engineering (EG-UY)",
+" Global Programs (GLBL-UA)",
+" Hebrew and Judaic Studies (HBRJD-GA)",
+" Higher Educational Opportunity Program (HE-UY)",
+" History (HIST-UA)",
+" Honors College (HC-UY)",
+" Humanities (HU-GY)",
+" Industrial Engineering (IE-GY)",
+" Information Systems (INFO-GB)",
+" Integrated Digital Media (DM-GY)",
+" Interactive Telecommunications (ITPG-GT)",
+" Interdisciplinary Seminars (IDSEM-UG)",
+" Journalism (JOUR-UA)",
+" Journalism (JW-UY)",
+" Law (LW-UY)",
+" Life Sciences (LS-GY)",
+" Management (MG-GY)",
+" Management Communications (MCOM-GB)",
+" Manufacturing Engineering (MN-UY)",
+" Marketing (MKTG-UB)",
+" Materials Science (MT-UY)",
+" Mathematics (MA-GY)",
+" Mathematics (MATH-GA)",
+" Mechanical & Aerospace Engr (AM-UY)",
+" Mechanical Engineering (ME-UY)",
+" Media, Culture & Communication (MCC-GE)",
+" Middle Eastern and Islamic Studies  (MEIS-UA)",
+" Modern Language (ML-UY)",
+" Music (MU-UY)",
+" Music Instrumental: Voice (MPAVP-UE)",
+" Music Technology (MPATE-GE)",
+" Neural Science (NEURL-GA)",
+" Operations Management (OPMG-GB)",
+" Operations Research (OR-UY)",
+" Philosophy (PHIL-UA)",
+" Philosophy (PL-UY)",
+" Photography and Imaging (PHTI-UT)",
+" Physical Education (PE-UY)",
+" Physics (PH-UY)",
+" Political Science (PO-UY)",
+" Psychology (PS-GY)",
+" Psychology (PSYCH-UA)",
+" Registrar (RE-GY)",
+" Russian & Slavic Studies (RUSSN-UA)",
+" SA (SA-UY)",
+" Social Research & Public Policy  (SRPP-AD)",
+" Social Science (SS-UY)",
+" Sociology (SOC-UA)",
+" Statistics & Operations Research (STAT-UB)",
+" Student Life (SL-UY)",
+" Systems Engineering (SE-GY)",
+" Technical Communications (TC-UY)",
+" Transportation (TR)",
+" Transportation (TR-UY)",
+" Undergrad Film & TV (FMTV-UT)",
+" Urban planning course (URPL-GP)",
+   ]
+
+   CASClasses= [
+"      Advanced Honors Seminars (AHSEM-UA)",
+" American Studies - Social and Cultural Analysis (SCA-UA2)",
+" Anthropology (ANTH-UA)",
+" Asian/Pacific/American Studies  - Social and Cultural Analysis (SCA-UA3)",
+" CAS Scholars Program (SCHOL-UA)",
+" Child/Adoles Mental Hlth Stds (CAMHS-UA)",
+" Classics (CLASS-UA)",
+" Collegiate Seminar Program (COSEM-UA)",
+" Computer Science (CSCI-UA)",
+" Dramatic Literature (DRLIT-UA)",
+" Economics (ECON-UA)",
+" English (ENGL-UA)",
+" European and Mediterranean Studies (EURO-UA)",
+" French (FREN-UA)",
+" Freshman Honors Seminars (FRSEM-UA)",
+" German (GERM-UA)",
+" Hamilton Program (ALHAM-UA)",
+" Hellenic Studies (HEL-UA)",
+" International Relations (INTRL-UA)",
+" Italian (ITAL-UA)",
+" Latino Studies - Social and Cultural  Analysis (SCA-UA5)",
+" Linguistics (LING-UA)",
+" Medieval & Renaissance Studies (MEDI-UA)",
+" Middle Eastern and Islamic Studies  (MEIS-UA)",
+" Music (MUSIC-UA)",
+" Non-Departmental (NODEP-UA)",
+" Physics (PHYS-UA)",
+" Pontif Univ. Cat-Chile Courses (PONT)",
+" Psychology (PSYCH-UA)",
+" Russian & Slavic Studies (RUSSN-UA)",
+" Sociology (SOC-UA)",
+" Africana Studies - Social and  Cultural Analysis (SCA-UA1)",
+" Animal Studies (ANST-UA)",
+" Art History (ARTH-UA)",
+" Biology (BIOL-UA)",
+" Chemistry (CHEM-UA)",
+" Child/Adoles Mental Hlth Stds (CAMS-UA)",
+" College Core Curriculum (CORE-UA)",
+" Comparative Literature (COLIT-UA)",
+" Creative Writing (CRWRI-UA)",
+" East Asian Studies (EAST-UA)",
+" Engineering Pgm with Stevens (STVNS-UA)",
+" Environmental Studies (ENVST-UA)",
+" Expository Writing (EXPOS-UA)",
+" Freshman Cohort Meeting (COHRT-UA)",
+" Gender & Sexuality Studies - Social  and Cultural Analysis (SCA-UA4)",
+" Global Programs (GLBL-UA)",
+" Hebrew & Judaic Studies (HBRJD-UA)",
+" History (HIST-UA)",
+" Irish Studies (IRISH-UA)",
+" Journalism (JOUR-UA)",
+" Law and Society (LWSOC-UA)",
+" Math (MATH-UA)",
+" Metropolitan Studies - Social and Cultural Analysis (SCA-UA6)",
+" Morse Academic Plan (MAP) (MAP-UA)",
+" Neural Science (NEURL-UA)",
+" Philosophy (PHIL-UA)",
+" Politics (POL-UA)",
+" Portuguese (PORT-UA)",
+" Religious Studies (RELST-UA)",
+" Social and Cultural Analysis (SCA-UA)",
+" Spanish (SPAN-UA)",
+   ]
+
+   DenistryClasses =[
+" Basic Sciences (BAS01-DN)",
+" Behavioral Sciences (BEH03-DN)",
+" Behavioral Sciences (BEHSC-DN)",
+" Clinical Sciences (CLS01-DN)",
+" Clinical Sciences (CLS06-DN)",
+" Dental Hygiene (DHYGG-UD)",
+" Dental Hygiene BS (DHYG3-UD)",
+" Dental Hygiene Level 2 (DHYG2-DN)",
+" Diagnostic Sciences (DGSCI-DN)",
+" Ethics (ETHIC-DN)",
+" Intro to Clinics (PRECL-DN)",
+" Basic Sciences (BASCI-DN)",
+" Behavioral Sciences (BEH05-DN)",
+" Biomaterials (BIOM-DN)",
+" Clinical Sciences (CLS03-DN)",
+" Clinical Sciences (CLSCI-DN)",
+" Dental Hygiene BS (DHYG3-DN)",
+" Dental Hygiene Level 1 (DHYG1-UD)",
+" Dental Hygiene Level 2 (DHYG2-UD)",
+" Ethics (ETH05-DN)",
+" Implant Dentistry (IMPLA-DN)",
+" Maintenance (MAINT-UD)",
+     ]
+
+   GallatinClasses = [
+"      Advanced Writing Courses (WRTNG-UG)",
+" Community Learning (CLI-UG)",
+" Electives (ELEC-GG)",
+" GESP (GESP-UG)",
+" Individualized Projects (INDIV-UG)",
+" Maintenance (MAINT-GG)",
+" Practicum (PRACT-UG)",
+" Scholarly Communities (SCHOL-UG)",
+" Travel Courses (TRAVL-GG)",
+" Arts Workshops (ARTS-UG)",
+" Core (CORE-GG)",
+" First Year program (FIRST-UG)",
+" Individualized Projects (INDIV-GG)",
+" Interdisciplinary Seminars (IDSEM-UG)",
+" Music Instrumental: Jazz (MPAJZ-UE)",
+" Scholarly Communities (SCHOL-GG)",
+" Study Away Seminar (SASEM-UG)",
+" Travel Courses (TRAVL-UG)",
+     ]
+
+   SternClass = [
+   "   Accounting (ACCT-GB)",
+" Business & Society (BSPA-GB)",
+" Core Course (COR1-GB)",
+" Dissertation Seminar (DISS-GB)",
+" European Cert. Program (DBIN-GB)",
+" Exec MS Risk Management (XRM1-GB)",
+" Finance (FINC-GB)",
+" Honors Seminar (non-credit) (HONR-UB)",
+" Information Systems (INFO-GB)",
+" Interarea (INTA-GB)",
+" MS in Business Analytics (XBA1-GB)",
+" Management (MGMT-GB)",
+" Management Communications (MCOM-GB)",
+" Marketing (MKTG-UB)",
+" Operations Management (OPMG-GB)",
+" PHD Consortium (B77.)",
+" Poly/Stern Non-PhD Courses (POLY-GB)",
+" Statistics & Operations Research (STAT-UB)",
+" Stern Economics (ECON-UB)",
+" Taxation (TAX-GB)",
+" Accounting (ACCT-UB)",
+" Business and Political Economy  Program (BPEP-UB)",
+" Core Course, capstone (COR2-GB)",
+" Economics (ECON-GB)",
+" Exec MBA Intl: Trium (XTR1-GB)",
+" Executive MS- HKUST (XGF1-GB)",
+" Finance (FINC-UB)",
+" Honors Seminar (non-credit) (NOCR-GB)",
+" Information Systems (INFO-UB)",
+" International Management Pgrm (IMPG-GB)",
+" Maintenance (MAINT-GB)",
+" Management (MGMT-UB)",
+" Marketing (MKTG-GB)",
+" Multidisciplinary (MULT-UB)",
+" Operations Management (OPMG-UB)",
+" PHD Consortium (PHDC-GB)",
+" Social Impact (SOIM-UB)",
+" Statistics & Operations Rsrch (STAT-GB)",
+" Study Abroad (IBEX-UB)",
+   ]
+
+   CAPClasses = [
+"      Academic Enrichment (AENR1-UC)",
+" American Language Institute (DESL1-GC)",
+" Anthropology (ANTH1-UC)",
+" Arts (ARTS1-UC)",
+" Construction Management MA/GC (CONM1-GC)",
+" Credit Analysis Diploma (CRED1-DC)",
+" Digital Communications & Media  (DGCM1-UC)",
+" Digital Imaging & Dsgn MA (MSDI1-GC)",
+" Experiential Learning (EXPR1-UC)",
+" Fundraising MS (FDGR1-GC)",
+" Graphic Communications (GCOM1-GC)",
+" History (HIST1-UC)",
+" Hotel & Tourism Management (TCHT1-DC)",
+" Humanities (HUMN1-UC)",
+" Integrated Marketing (INTG1-GC)",
+" International Studies (INST1-UC)",
+" Literature (LITR1-UC)",
+" Management & Systems MA/GC (MASY1-GC)",
+" Media Studies (MEST1-UC)",
+" Paralegal (PARAL-DC)",
+" Professional Writing (PWRT1-GC)",
+" Public Administration (PADM1-UC)",
+" Publishing Masters (PUBB1-GC)",
+" RE Development (DEVE1-GC)",
+" Real Estate Masters/GC (REAL1-GC)",
+" SCPS Undergraduate Bootcamp (HSBSU-UC)",
+" Science (SCNC1-UC)",
+" Sociology (SOCY1-UC)",
+" Sports Management (TCSM1-UC)",
+" Summer High School Academy (HSASU-UC)",
+" Translation (TRAN1-GC)",
+" Advanced Digital Application (MGFX1-GC)",
+" American Language Institute (DESL1-UC)",
+" Art History (ARTH1-UC)",
+" Business (BUSN1-UC)",
+" Creative Writing (CWRG1-UC)",
+" Diagnostic Medical Sonography (SONH1-UC)",
+" Digital Communications & Media  (FILV1-UC)",
+" Economics (ECON1-UC)",
+" Expository Writing (EXWR1-UC)",
+" Global Studies (GLOB1-GC)",
+" Healthcare Management (HEAL1-UC)",
+" Hospitality Management MA/GC (TCHS1-GC)",
+" Hotel & Tourism Management (TCHT1-UC)",
+" Information Systems Management  (ISMM1-UC)",
+" Interdisciplinary (ELEC1-UC)",
+" Leadership and Management Studies (LRMS1-UC)",
+" MS in Human Resources (HRCM1-GC)",
+" Math (MATH1-UC)",
+" Organizational Behavior and Communications  (ORBC1-UC)",
+" Politics (POLS1-UC)",
+" Psychology (PSYC1-UC)",
+" Public Relations MS (PRCC1-GC)",
+" Quality Assurance (QUAL1-GC)",
+" Real Estate (REAL1-UC)",
+" Religion (RELG1-UC)",
+" Schack Undergraduate Real Esta  (REBS1-UC)",
+" Social Sciences (SOCS1-UC)",
+" Sports Business Magmt. MA/GC (TCSB1-GC)",
+" Study Abroad (SABR1-UC)",
+" Tourism Management (TCTM1-GC)"
+   ]
+
+   TischClasses = [
+"      Animation and Digital Arts (ANDA-GT)",
+" Cinema Studies (CINE-UT)",
+" Ctr for Art, Society & Pub Pol (ASPP-UT)",
+" Dance (DANC-UT)",
+" Drama (THEA-UT)",
+" Dramatic Writing (DWPG-UT)",
+" Graduate Acting (ACTG-GT)",
+" Graduate Film & TV (GFMTV-GT)",
+" Int`l Pgms, Dance (IDANC-UT)",
+" Int`l Pgms, Film & Television (IFMTV-UT)",
+" Interactive Telecommunications (ITPG-GT)",
+" International Media Producing (PRDS-GT)",
+" Musical Theatre (GMTW-GT)",
+" Non-Credit TSOA Courses (NCRD-GT)",
+" Open Arts Curriculum (OART-GT)",
+" Performance Studies (PERF-GT)",
+" Photography and Imaging (PHTI-GT)",
+" Recorded Music (REMU-UT)",
+" Spr Semester at Tisch - Drama (STHTR-UT)",
+" TSOA International Topics Pgm (IOART-UT)",
+" Cinema Studies (CINE-GT)",
+" Ctr for Art, Society & Pub Pol (ASPP-GT)",
+" Dance (DANC-GT)",
+" Design (DESG-GT)",
+" Dramatic Writing (DWPG-GT)",
+" Game Design (GAMES-GT)",
+" Graduate Film & TV (FMTV-GT)",
+" Int`l Pgms, Cinema Studies (ICINE-UT)",
+" Int`l Pgms, Drama (ITHEA-UT)",
+" Int`l Pgms, Photography (IPHTI-UT)",
+" Interdisciplinary (IDSC-UT)",
+" Maintenance (MAINT-GT)",
+" Musical Theatre (GMTW-UT)",
+" Non-Credit TSOA Courses (NCRD-UT)",
+" Open Arts Curriculum (OART-UT)",
+" Performance Studies (PERF-UT)",
+" Photography and Imaging (PHTI-UT)",
+" Spr Sem at Tisch - Film & TV (SFMTV-UT)",
+" TSOA International Topics Pgm (IOART-GT)",
+" Undergrad Film & TV (FMTV-UT)",
+   ]
+
+   
+   function display(){
+     var s = document.getElementById('selectSchool');
+     var school = s.options[s.selectedIndex].text;
+     var str;
+     if(school == "POLY NYU"){
+       for(var i = 0; i < PolyClasses.length;i++){
+	 str += "<option>" + PolyClasses[i] + "</option>"
+       }
+       document.getElementById('selectC').innerHTML = str;
+     }
+     else if(school == "NYU College of Arts and Science"){
+       for(var i = 0; i < CASClasses.length;i++){
+	 str += "<option>" + CASClasses[i] + "</option>"
+       }
+       document.getElementById('selectC').innerHTML = str;
+     }
+     else if(school == "College of Dentistry"){
+       for(var i = 0; i < DenistryClasses.length;i++){
+	 str += "<option>" + DenistryClasses[i] + "</option>"
+       }
+       document.getElementById('selectC').innerHTML = str;
+     }
+     else if(school == "Gallatin School of Individualized Study"){
+       for(var i = 0; i < GallatinClasses.length;i++){
+	 str += "<option>" + GallatinClasses[i] + "</option>"
+       }
+       document.getElementById('selectC').innerHTML = str; 
+     }
+     else if(school == "Leonard N. Stern School of Business"){
+       for(var i = 0; i < SternClasses.length;i++){
+	 str += "<option>" + SternClasse[i] + "</option>"
+       }
+       document.getElementById('selectC').innerHTML = str;
+     }
+     else if(school == "Tisch School of the Arts"){
+       for(var i = 0; i < TischClasses.length;i++){
+	 str += "<option>" + TischClasses[i] + "</option>"
+       }
+       document.getElementById('selectC').innerHTML = str; 
+     }
+     else if(school == "School of Continuing and Professional Studies"){
+       for(var i = 0; i < CAPClasses.length;i++){
+	 str += "<option>" + CAPClasses[i] + "</option>"
+       }
+     }
+     else{
+       str = "Please Select A School First";
+     }
+     document.getElementById('selectC').innerHTML = str; 
+   }
+   
    //MAPScript
    var now;
    var daily;
@@ -171,7 +794,7 @@
    
    var StudentSchedule = [
      ["Monday-Thursday"],
-     ["10:45","11:45","1:15","2:45"]
+     ["10:45","11:45","13:15","14:45"]
    ];
    var Answer = [];
 
@@ -179,11 +802,19 @@
      Answer = [];
      for(var i = 0;i < ClassArray.length;i++){
 	 if(ClassArray[i].time > daily){
-	   Answer.push(ClassArray[i].time);
+	   Answer.push(ClassArray[i]);
        }
      }
      Answer.sort(compare);
    }
+
+   
+   $(function(){
+     $('#test').click(function(){
+       var t = document.getElementById('classtime');
+       t.value = "";
+     }); 
+   });
    
    setInterval(Planner,50000);
    
@@ -195,7 +826,7 @@
      }else{
        for(var i =0;i < Answer.length;i++){
 	 for(var j =0;j < StudentSchedule[1].length; j++){
-	   if(Answer[i] > StudentSchedule[1][j]){
+	   if(Answer[i].time > StudentSchedule[1][j]){
 	     ans = j + 1;
 	   }
 	 }
@@ -204,7 +835,7 @@
      if (StudentSchedule[1][ans] == undefined){
        document.getElementById('busTime').innerHTML = "You're done for the day!";
      }else{
-       document.getElementById('busTime').innerHTML = PolySchedule[1][ans];
+       document.getElementById('busTime').innerHTML = "Take NYU Shuttle Bus: " + StudentSchedule[1][ans];
        }
    }
       
