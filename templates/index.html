@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
   <link rel="icon" type="image/png" href="/static/assets/bus-icon.png">
+  <style>
+   body{
+     background-color:#57068c
+   }
+  </style>
 </head>
 
 <body>
-{{message}}
-
-<h1>Welcome to NYU Class Scheduler</h1>
-<a href="/login">Login</a> <a href="/register">Register</a>
-
+  {{message}}
+  <nav class="navbar navbar-default" role="navigation">
+    <a class="navbar-brand" href="#" onclick="return false;">NYU Daily</a>
+  </nav>
+  <h1 style="color:white;">Welcome to NYU Daily</h1>
+  <p style="font-size: 20px; color:white;">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus felis mauris, suscipit vitae nibh ac, condimentum fermentum libero. Mauris eget urna iaculis, ornare lectus ac, elementum diam. Ut arcu tellus, luctus sit amet auctor ac, rutrum a diam. Quisque placerat varius porta. Mauris convallis velit eget ullamcorper auctor. Integer auctor sollicitudin rutrum. Praesent vitae congue leo. Nulla a ante a mi scelerisque tristique ac vitae sapien. Suspendisse suscipit viverra lectus ac ullamcorper. Sed sollicitudin viverra sem et gravida.
+  </p>
+  <a href="/login">Login</a>
+  <a href="/register">Register</a>
+  
 </body>
 
 </html>

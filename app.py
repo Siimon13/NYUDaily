@@ -17,11 +17,15 @@ def login():
 		password = request.form['password'].encode('ascii','ignore')	
 		if auth.login(username,password):
 			session['username'] = username
-                        return redirect('/profile');
+                        return redirect('/profile-monday');
 		else:
 			return redirect('/login', message = auth.login(username,password))
 
-@app.route("/profile",methods=["GET","POST"])
+@app.route("/profile-monday",methods=["GET","POST"])
+@app.route("/profile-tuesday",methods=["GET","POST"])
+@app.route("/profile-wednesday",methods=["GET","POST"])
+@app.route("/profile-thursday",methods=["GET","POST"])
+@app.route("/profile-friday",methods=["GET","POST"])
 def profile():
         if 'username' in session:
                 return render_template('profile.html',user = session['username']);
